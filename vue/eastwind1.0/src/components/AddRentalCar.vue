@@ -47,18 +47,30 @@ export default {
     }
   },
   created:function(){
-    this.$http.post(
-      "http://127.0.0.1:8000/api-token-auth/", 
-      {"username":"zte", "password":"zte123456"},
-      {headers:{"Content-Type":"application/json"}},
-      {"Access-Control-Allow-Origin":"*"}).then(res => {
+    // this.$http.post(
+    //   "http://127.0.0.1:8000/api-token-auth/", 
+    //   {"username":"zte", "password":"zte123456"},
+    //   {headers:{"Content-Type":"application/json"}},
+    //   {"Access-Control-Allow-Origin":"*"}).then(res => {
+    //   console.log("111111111!!!!!")
+    //   this.user.carid="su999"
+    // }).catch(error => {
+    //   console.log("222222222222")
+    //   console.log("error")
+    // })
+    this.$axios({
+                method:'post',
+                url:'http://127.0.0.1:8000/api-token-auth/',
+                //headers:{"Content-Type":"application/json"},
+                data:{"username":"zte", "password":"zte123456"}
+    }).then(res => {
       console.log("111111111!!!!!")
       this.user.carid="su999"
     }).catch(error => {
       console.log("222222222222")
       console.log("error")
     })
-  }, 
+  }
 }
 </script>
 
