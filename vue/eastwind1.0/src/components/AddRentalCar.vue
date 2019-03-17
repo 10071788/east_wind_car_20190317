@@ -11,6 +11,7 @@
      <br>
      <label>到达地点</label>
      <input type="text" v-model="user.dstaddr" required />
+     <button v-on:click.prevent="singledataGet">获取数据</button>
    </form>
    <hr>
    <div id="preview">
@@ -31,6 +32,7 @@ export default {
           srcaddr:"",
           dstaddr:""
       },
+      token_id:""
     }
   },
   methods:{
@@ -44,7 +46,25 @@ export default {
           console.log(data);
           this.submmited=true;
         });
-    }
+    },
+    singledataGet:function(){
+      this.$axios({
+                method:'get',
+                url:'http://127.0.0.1:8000/eastcars/1/'
+                //headers:{"Content-Type":"application/json"},
+                //data:{"username":"zte", "password":"zte123456"}
+    })
+    .then(res =>{
+      console.log("Get data success")
+      console.log(res.data)
+      this.user.carid = res.data["carid"]
+      this.user.srcaddr = res.data["srcaddr"]
+      this.user.dstaddr = res.data["dstaddr"]
+    })
+    .catch(error =>{
+      console.log("Get data failed")
+      console.log("error")
+    })}
   },
   created:function(){
     // this.$http.post(
@@ -64,10 +84,10 @@ export default {
                 //headers:{"Content-Type":"application/json"},
                 data:{"username":"zte", "password":"zte123456"}
     }).then(res => {
-      console.log("111111111!!!!!")
       this.user.carid="su999"
+      this.token_id = res.data["token"]
+      console.log(this.token_id)
     }).catch(error => {
-      console.log("222222222222")
       console.log("error")
     })
   }
