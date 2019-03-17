@@ -1,0 +1,6 @@
+echo "# east_wind_car_20190317" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/10071788/east_wind_car_20190317.git
+git push -u origin master
