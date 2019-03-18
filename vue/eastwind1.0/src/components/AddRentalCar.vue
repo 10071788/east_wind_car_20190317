@@ -49,10 +49,10 @@ export default {
     },
     singledataGet:function(){
       this.$axios({
-                method:'get',
-                url:'http://127.0.0.1:8000/eastcars/1/'
+                method:'post',
+                url:'http://127.0.0.1:8000/eastcars/',
                 //headers:{"Content-Type":"application/json"},
-                //data:{"username":"zte", "password":"zte123456"}
+                data:{"carid":"222222", "srcaddr":"abc", "dstaddr":"bcd"}
     })
     .then(res =>{
       console.log("Get data success")
